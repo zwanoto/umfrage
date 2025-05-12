@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Umfrageauswahl</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .info-text {
+      margin-top: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .question-block {
+      margin-top: 40px;
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    select {
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Willkommen zur Umfrage</h1>
+
+  <div class="info-text">
+    <p>Vielen Dank, dass Sie sich Zeit für diese Befragung nehmen.</p>
+    <p>Im Rahmen meiner Masterarbeit an der Hochschule Macromedia untersuche ich Entscheidungsprozesse in bestimmten Alltagssituationen.</p>
+    <p>Aus methodischen Gründen kann der genaue Zweck der Studie erst am Ende der Befragung offengelegt werden. So soll sichergestellt werden, dass Ihre Antworten möglichst unbeeinflusst erfolgen.</p>
+    <p>Die Teilnahme ist freiwillig und erfolgt anonym. Alle Angaben werden vertraulich behandelt und sind nicht auf Ihre Person zurückführbar.</p>
+    <p>Die Bearbeitung dauert nur wenige Minuten. Vielen Dank für Ihre Unterstützung!</p>
+  </div>
+
+  <div class="question-block">
+    <p><strong>Welche der folgenden Aussagen trifft am besten auf Sie zu?</strong></p>
+    <select id="roleSelection">
+      <option value="">Bitte wählen Sie aus</option>
+      <option value="manager">Ich bin in einer Manager- oder Führungsposition</option>
+      <option value="konsument">Ich bin Konsument:in (keine Führungsposition)</option>
+    </select>
+    <br>
+    <button onclick="handleSelection()">Weiter zur Umfrage</button>
+  </div>
+
+  <script>
+    function handleSelection() {
+      const selection = document.getElementById("roleSelection").value;
+      const links = {
+        konsument: "https://www.soscisurvey.de/MAKrug_SS2025/?act=HVc2VdeffF60DrKenV1s5lpR",
+        manager1: "https://www.soscisurvey.de/masterarbeitKrug_SS2025/?act=53EIxUgeiP6G6RLAHL5Zekp1",
+        manager2: "https://www.soscisurvey.de/masterarbeit_KK_SS2025/?act=I8k4znBZL6Qo6bz1K6BdSm54"
+      };
+
+      if (selection === "manager") {
+        const randomLink = Math.random() < 0.5 ? links.manager1 : links.manager2;
+        window.location.href = randomLink;
+      } else if (selection === "konsument") {
+        window.location.href = links.konsument;
+      } else {
+        alert("Bitte wählen Sie eine Option aus.");
+      }
+    }
+  </script>
+
+</body>
+</html>
